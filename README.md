@@ -3,6 +3,7 @@
 A new Flutter project.
 
 ## Getting Started
+<img src="./assets/Capture.PNG">
 
 This project is a starting point for a Flutter application.
 
