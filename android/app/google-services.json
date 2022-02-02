@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "10496172462",
+    "project_id": "authapp-dba6f",
+    "storage_bucket": "authapp-dba6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10496172462:android:06426cc11ad68fc7a5a83f",
+        "android_client_info": {
+          "package_name": "com.example.authapp_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10496172462-g8fdojpcbddcporh9qivdlhriu5dj6jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-GGs-qW_IxzqNQ7F2Fhl3T449DsjE-Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10496172462-g8fdojpcbddcporh9qivdlhriu5dj6jr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
