@@ -3,6 +3,7 @@
 
 import 'package:authapp_firebase/New.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -17,17 +18,41 @@ class _SignUpState extends State<SignUp> {
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
   FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseDatabase db = FirebaseDatabase.instance;
+
+  TextEditingController name = TextEditingController();
+  TextEditingController contact = TextEditingController();
+
 
   Future<void> SignUp() async {
     print(email.text);
     print(password.text);
+    print(name.text);
+    print(contact.text);
+    var username = name.text;
 
     try {
       UserCredential user = await auth.createUserWithEmailAndPassword(
           email: email.text, password: password.text);
       print(user.user!.displayName);
       print(user.user!.uid);
+
+      DatabaseReference useRef= FirebaseDatabase.instance.reference().child("/Product").child("/Hardware");
+
+      var object = {
+        "email":email.text,
+        "Name":name.text,
+        "password":password.text,
+        "Contact": contact.text
+
+      };
+
+      // ignore: await_only_futures
+      await useRef.child(user.user!.uid).set(object);
+
+
 
       return showDialog(
         context: context,
@@ -119,6 +144,21 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             children: [
               TextFormField(
+                controller: name,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                    hintText: "Enter User Name*",
+                    labelText: "Name",
+                    prefixIcon: Icon(Icons.verified_user)),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "             Please Fill The Data";
+                  }
+                  return null;
+                },
+              ),
+              
+              TextFormField(
                 controller: email,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -143,6 +183,20 @@ class _SignUpState extends State<SignUp> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "                  Please Fill The Data";
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: contact,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    hintText: "Enter Your Contact *",
+                    labelText: "Contact",
+                    prefixIcon: Icon(Icons.phone)),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "             Please Fill The Data";
                   }
                   return null;
                 },
